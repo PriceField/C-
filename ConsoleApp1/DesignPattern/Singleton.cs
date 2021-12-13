@@ -8,24 +8,16 @@ namespace DSA.DesignPattern
 {
     public sealed class Singleton
     {
-        private static readonly object _lock = new object();
-        private static Singleton instance = null;
+        private static readonly Singleton instance = new Singleton();
+
+        static Singleton() { }
+
+        private Singleton() { }
+
         public static Singleton Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (_lock)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new Singleton();
-                        }
-                    }
-                }
-                return instance;
-            }
+            get { return instance; }
         }
+
     }
 }

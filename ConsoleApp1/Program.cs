@@ -10,10 +10,12 @@ using DSA.DesignPattern;
 using System.Threading;
 using System.IO;
 using System.Collections.Concurrent;
+using DSA.Practice;
 
 namespace DSA
 {
-    class Program
+
+    public class Program
     {
         void Practice<T>(T variable)
         {
@@ -58,13 +60,17 @@ namespace DSA
         {
             Console.WriteLine("fsefse");
         }
-
-        void Practice()
+        int s = 0;
+        public bool dfs(int[] arr)
         {
-            Thread thread = new Thread(Th);
-            thread.Start();
-            Thread.Sleep(2000);
+            return false;
         }
+
+        void Practice(int[] arr)
+        {
+
+        }
+
         static void nunum()
         {
             Console.WriteLine("nunun");
@@ -88,6 +94,7 @@ namespace DSA
             {
                 Console.WriteLine("yes");
             }
+
             Parallel.ForEach(smallList, i =>
             {
                 Console.WriteLine(i);
@@ -99,15 +106,38 @@ namespace DSA
             }
             );
 
+            Parallel.For(0, 100, (i, j) =>
+            {
+                Console.WriteLine(j);
+                Console.WriteLine(i);
+            }
+            );
+            Parallel.ForEach(smallList, i =>
+            {
+                i.ToString();
+            });
+
+            var g = 0;
+            Parallel.ForEach(smallList, () => 0, (i, loopState, local) =>
+            {
+                if (local == 123)
+                {
+                    loopState.Break();
+                }
+                local += smallList[i];
+                return local;
+            },
+            (x) => Interlocked.Add(ref g, x)
+            );
+            Task task = new Task(() => Console.WriteLine("a"));
+
         }
 
         static void Main(string[] args)
         {
             Program program = new Program();
-            program.Practice();
-            program.ParallelF();
 
-            int[] nums1 = { 1, 1, 1, 1, 1 };
+            int[] nums1 = { 0, 3, 0, 6, 3, 3, 4 };
             string[] nums2 = { "a", "b", "c" };
             List<List<int>> bigList = new List<List<int>>();
             List<int> smallList = new List<int>() { 98, 76, 6, 51, 5, 4, 3 };
@@ -125,13 +155,11 @@ namespace DSA
             animal2.GetAnimal();
             ArrayList arrayList = new ArrayList() { "asd", 2, new int[4] };
 
+
             string _string = "ababcbacadefegdehijhklij";
-            using (StreamReader reader = new StreamReader("D:\\Git\\leecode\\done.txt"))
-            {
-                reader.ReadToEnd();
-                var dftk = reader.ReadToEnd();
-                var r6t6ghtr = reader.Peek();
-            }
+            _string.Remove(_string.IndexOf(""), 1);
+            _string.TrimStart('0');
+            program.Practice(nums1);
 
             // iterator
             var k = program.Get();
@@ -142,13 +170,29 @@ namespace DSA
 
 
             Console.ReadLine();
-            //thread
+
+
+            //parallel
+            program.ParallelF();
 
             //lazy
 
             //async
 
             //lock
+
+            //IO
+
+            using (StreamReader reader = new StreamReader("D:\\Git\\leecode\\done.txt"))
+            {
+                reader.ReadToEnd();
+                var dftk = reader.ReadToEnd();
+                var r6t6ghtr = reader.Peek();
+            }
+
+            //extension method
+            Cat cat = new Cat();
+            cat.method();
         }
         public enum EnumName
         {
@@ -167,6 +211,35 @@ namespace DSA
         {
             return (k + 1, k - 1);
         }
+
+        private void InvokeEightQueen()
+        {
+            EightQueens eightQueens = new EightQueens();
+
+            int n = int.Parse(Console.ReadLine());
+            var graph = eightQueens.GetResult(n);
+            foreach (var ch in graph)
+            {
+                int br = 0;
+                foreach (var s in ch)
+                {
+                    Console.Write(s);
+                    br++;
+                    if (br % n == 0)
+                    {
+                        Console.WriteLine();
+                    }
+                }
+            }
+        }
+
     }
 
+    static class ExtenionMethod
+    {
+        public static void method(this Cat cat)
+        {
+            Console.WriteLine("asd");
+        }
+    }
 }

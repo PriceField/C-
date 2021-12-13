@@ -12,12 +12,10 @@ namespace DSA.Tests
     public class TestTests
     {
         [TestMethod()]
-        public void MyTestTest()
+        public void dfsTest()
         {
-            int mock = 6;
-            Test test = new Test();
-            int result = test.MyTest(6);
-            Assert.AreEqual(6 + 5, result);
+            bool k = false;
+            Assert.AreEqual(k, true);
         }
     }
 }

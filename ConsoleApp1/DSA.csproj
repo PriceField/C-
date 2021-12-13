@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="DesignPattern\Sample\Animal.cs" />
     <Compile Include="DesignPattern\Singleton.cs" />
+    <Compile Include="Practice\EightQueens.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorting\Bubble.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
